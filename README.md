@@ -33,11 +33,20 @@ Open `notebooks/analysis.ipynb` and run all cells. This will:
 - Export `students.csv` and `dashboard/public/students.json` for the dashboard.
 
 ### 3) Next.js Dashboard Setup
+Windows PowerShell:
+```powershell
+Set-Location -Path "dashboard"
+npm install --no-fund --no-audit
+npx --yes next dev
+```
+
+macOS/Linux:
 ```bash
 cd dashboard
-npm install
+npm install --no-fund --no-audit
 npm run dev
 ```
+
 Open `http://localhost:3000`.
 
 The dashboard includes:
@@ -67,5 +76,19 @@ These will change with new synthetic seeds or real data.
 ### Notes
 - A pre-generated `dashboard/public/students.json` is included so the dashboard runs immediately. Re-run the notebook to regenerate with new data.
 - Every student has a globally unique numeric `student_id`.
+
+### Troubleshooting
+- "'next' is not recognized":
+  - Ensure dependencies installed in `dashboard/`: `npm install`.
+  - Run with local binary: `npx --yes next dev` (PowerShell/macOS/Linux).
+  - If the error persists, remove `node_modules` and lockfile in `dashboard/` then reinstall:
+    - PowerShell: `Remove-Item -Recurse -Force .\node_modules; Remove-Item -Force .\package-lock.json; npm install`
+    - macOS/Linux: `rm -rf node_modules package-lock.json && npm install`
+- OneDrive path issues (file locks/ENOTEMPTY on Windows):
+  - Close editors/explorer windows that may lock files.
+  - Retry a clean install as above.
+  - If problems persist, move the project outside OneDrive (e.g., `C:\Projects`).
+- Execution policy (PowerShell): if scripts are blocked, run PowerShell as Administrator and execute: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
+- Node version: use Node 18+ (LTS recommended). Check with `node -v`.
 
 
