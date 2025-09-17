@@ -1,0 +1,10 @@
+Pillow==10.4.0
+pandas==2.2.2
+numpy==2.1.1
+matplotlib==3.9.2
+seaborn==0.13.2
+scikit-learn==1.5.2
+faker==26.0.0
+jupyterlab==4.2.5
+ipykernel==6.29.5
+
